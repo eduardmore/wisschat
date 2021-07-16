@@ -1,0 +1,81 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons>      
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-start ion-padding-end ion-padding-bottom">
+  <div align="center">
+    <h3>{{'account_balance' | translate}}</h3>
+    <h2>
+      <span>
+        <img src="assets/imgs/coins.webp" alt="" class="coin_img">
+      </span>
+      {{preference.currentUser.coins}}
+    </h2>
+  </div>
+  <br>
+
+  <ion-list *ngIf="!api_done" style="height: auto; width: 100%;">
+    <ion-item *ngFor="let demo of [1,2,3,4,5]" lines="none">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+  
+  <div *ngIf="api_done && products.length == 0" align="center" style="padding-top: 50%;">
+    <ion-icon name="sad-outline" style="font-size: 50px; color: var(--secondary);"></ion-icon>
+    <p style="font-size: 20px; color: var(--secondary);">{{'no_more_product' | translate}}</p>
+  </div>
+
+  <div *ngIf="products.length > 0 && api_done">
+    <ion-card *ngFor="let item of products">
+      <ion-item class="ion-no-padding" lines="none" (click)="buyCoins(item)">
+        <ion-avatar slot="start" align="right">
+          <img src="assets/imgs/coins.webp" alt="">
+        </ion-avatar>
+        <ion-label><strong>{{item.coins}}</strong> {{'coins' | translate}}</ion-label>
+        <div slot="end" class="ion-margin-end">
+          <h3>{{item.price}}</h3>
+        </div>
+      </ion-item>
+    </ion-card>
+  </div>
+  <br>
+
+  <!-- <ion-card>
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-avatar slot="start" align="right">
+        <img src="assets/imgs/coins.webp" alt="">
+      </ion-avatar>
+      <ion-label><strong>300</strong> coins</ion-label>
+      <div slot="end" class="ion-margin-end">
+        <h3>15.49</h3>
+      </div>
+    </ion-item>
+  </ion-card> -->
+
+  <!-- <ion-card class="ion-no-margin continue_div" align="center">
+    <h5 class="ion-no-margin">Recharge New and get</h5>
+    <h4 color="warning">
+      <strong>15% Off</strong>
+    </h4>
+    <h5 class="ion-no-margin">on any pick</h5>
+    <br>
+    <ion-button class="continue">Continue</ion-button>
+  </ion-card> -->
+</ion-content>

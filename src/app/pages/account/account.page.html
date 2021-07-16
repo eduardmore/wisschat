@@ -1,0 +1,98 @@
+<ion-content class="ion-padding">
+  <div *ngIf="!userData"><!---->
+    <div>
+      <ion-row>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-col>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <div class="profile">
+            <ion-skeleton-text animated></ion-skeleton-text>
+          </div>
+        </ion-col>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-col>
+      </ion-row>
+    </div>
+    <br>
+    <div align="center" style="width: 100%;">
+      <h3 class="ion-no-margin">
+        <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+      </h3>
+      <br>
+      <br>
+      <div class="block_div" style="width: 100%;">
+        <h5 style="width: 100%; text-align: left;">
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h5>
+      </div>
+      <br>
+      <div class="block_div" style="width: 100%;">
+        <h5 style="width: 100%; text-align: left;">
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </h5>
+      </div>
+      <br>
+      <div class="block_div" style="width: 100%;">
+        <h5 style="width: 100%; text-align: left;">
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </h5>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="userData">
+    <div>
+      <ion-row>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <ion-button fill="outline" color="dark" size="small" shape="round" class="settings" routerLink="/media-manage" routerDirection="forward">{{'edit' | translate}}</ion-button>
+        </ion-col>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <div class="profile">
+            <img [src]="userData.profile_img.includes('http') ? userData.profile_img : preference.image_url + userData.profile_img" alt="">
+          </div>
+        </ion-col>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <ion-button fill="outline" color="dark" size="small" shape="round" class="settings" routerLink="/my-settings" routerDirection="forward">{{'settings' | translate}}</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+    <br>
+    <div align="center">
+      <h3 class="ion-no-margin">{{userData.name}}</h3>
+      <br>
+      <br>
+
+      <div *ngIf="userData?.user_type != 'employee'">
+        <div class="block_div" (click)="getCoins()">
+          <h5>{{'get_coin' | translate}}</h5>
+          <p>{{userData.coins}} <span><img src="assets/imgs/coins.webp" alt="" style="width: 20px; margin-left: 3px; position: relative; top: 3px;"></span></p>
+        </div>
+      </div>
+
+      <div class="block_div" routerLink="/revenue" routerDirection="forward" *ngIf="userData?.user_type == 'employee'">
+        <h5>
+          <img src="assets/imgs/coins.webp" alt="" style="width: 20px; margin-right: 3px; position: relative;">
+          <span style="position: relative; bottom: 3px;">
+            {{'revenue' | translate}}
+          </span>
+        </h5>
+      </div>
+      <br>
+      <div class="block_div" routerLink="/favorites" routerDirection="forward">
+        <h5>{{'favorite_users' | translate}}</h5>
+        <p>{{favorites.length}}</p>
+      </div>
+      <br>
+    </div>
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="logout()">
+      <ion-icon name="power-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>
+
+<app-footer></app-footer>

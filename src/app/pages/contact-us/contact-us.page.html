@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>
+      <ion-icon name="paper-plane" style="font-size: 30px;"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <br>
+    <div class="edit_sec">
+      <h3><strong>{{'Subject' | translate}}</strong></h3>
+      <ion-input type="text" autocapitalize="sentences" [(ngModel)]="subject"></ion-input>
+    </div>
+    <br>
+    <div class="edit_sec">
+      <h3><strong>{{'Message' | translate}}</strong></h3>
+      <ion-textarea type="text" class="about_me" [(ngModel)]="desciption" autocapitalize="sentences"></ion-textarea>
+    </div>
+    <br><br><br>
+
+    <div align="center">
+      <ion-button shape="round" size="small" (click)="sendMail()">{{'send' | translate}}</ion-button>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

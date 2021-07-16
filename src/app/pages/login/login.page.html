@@ -1,0 +1,49 @@
+<ion-content class="ion-padding">
+  <br>
+
+  <h2 align="center">{{'login_account' | translate}}</h2>
+
+  <div class="ion-padding">
+    <form [formGroup]="form">
+      <ion-list>
+        <ion-item class="ion-no-padding" lines="line">
+          <ion-label position="floating"
+            [color]="(form.get('email').invalid && form.get('email').touched) ? 'tertiary' : 'light'">{{'email' |
+            translate}}</ion-label>
+          <ion-input type="email" formControlName="email"
+            [color]="(form.get('email').invalid && form.get('email').touched) ? 'tertiary' : 'light'"></ion-input>
+        </ion-item>
+        <br>
+        <ion-item class="ion-no-padding" lines="line">
+          <ion-label position="floating"
+            [color]="(form.get('password').invalid && form.get('password').touched) ? 'tertiary' : 'light'">{{'password'
+            | translate}}</ion-label>
+          <ion-input type="password" formControlName="password"
+            [color]="(form.get('password').invalid && form.get('password').touched) ? 'tertiary' : 'light'"></ion-input>
+        </ion-item>
+      </ion-list>
+    </form>
+  </div>
+
+  <div align="right">
+    <ion-button fill="clear" size="small" class="ion-no-margin" color="light" routerLink="/forgot-password">{{'forgot_password' | translate}}</ion-button>
+  </div>
+  <br><br>
+  <div align="center">
+    <ion-button color="light" shape="round" (click)="login()" class="login_btn" [disabled]="!form.valid">{{'login' |
+      translate}}</ion-button>
+    <br><br>
+    <ion-note color="light">{{'dont_have_account' | translate}} &nbsp; <ion-button fill="clear" color="light"
+        size="small" class="sign_btn" routerLink="/register" routerDirection="forward">{{'signup' | translate}}
+      </ion-button>
+    </ion-note>
+    <br>
+    <p style="color: white;">{{'or' | translate}}</p>
+    <ion-button class="fb_btn" (click)="fbLogin()">
+      <ion-icon name="logo-facebook"></ion-icon>
+    </ion-button>
+    <ion-button class="gl_btn" (click)="glLogin()">
+      <ion-icon name="logo-google"></ion-icon>
+    </ion-button>
+  </div>
+</ion-content>

@@ -1,0 +1,10 @@
+<ion-app style="background: var(--theme-gradient);" class="{{preference.defaultLang == 'ar' ? 'lang_ar' : 'lang_en'}}">
+
+  <div *ngIf="!pageLoaded" align="center">
+    <br><br><br>
+    <ion-spinner name="crescent" color="light"></ion-spinner>
+  </div>
+
+  <ion-router-outlet *ngIf="pageLoaded" [dir]="preference.defaultLang == 'ar' ? 'rtl' : 'ltr'"></ion-router-outlet>
+
+</ion-app>

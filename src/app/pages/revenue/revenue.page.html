@@ -1,0 +1,129 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{'revenue' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div align="center">
+    <h2>{{start_date}} ~ {{end_date}}</h2>
+    <p>ID: {{preference.currentUser.id}}</p>
+  </div>
+  <br>
+  <div>
+    <ion-row class="header_row">
+      <ion-col size="5" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <h3>{{'date' | translate}}</h3>
+        </div>
+      </ion-col>
+      <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <img src="assets/imgs/coins.webp" alt="">
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <h3>{{'matches' | translate}}</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div *ngIf="!api_done">
+      <ion-row class="body_row no_data" *ngFor="let item of [1,2,3,4,5,6]">
+        <ion-col size="5" class="ion-align-item-center ion-align-self-center" align="center">
+          <div>
+            <p>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </p>
+          </div>
+        </ion-col>
+        <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+          <div>
+            <p>
+              <span>
+                <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+              </span>
+            </p>
+          </div>
+        </ion-col>
+        <ion-col size="3" class="ion-align-item-center ion-align-self-center" align="center">
+          <div>
+            <p>
+              <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="api_done && data.length == 0">
+      <ion-row class="body_row">
+        <ion-col size="12" class="ion-align-item-center ion-align-self-center" align="center">
+          <div>
+            <p>{{'no_data' | translate}}</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <ion-row class="body_row" *ngFor="let reve of data">
+      <ion-col size="5" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <p>{{reve.created_at}}</p>
+        </div>
+      </ion-col>
+      <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <p>
+            <img src="assets/imgs/coins.webp" alt="">
+            <span>{{reve.revenue}}</span>
+          </p>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <p>{{reve.matches}}</p>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="footer_row" *ngIf="api_done && data.length > 0">
+      <ion-col size="5" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <h3>{{'total' | translate}}</h3>
+        </div>
+      </ion-col>
+      <ion-col size="4" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <h3>
+            <img src="assets/imgs/coins.webp" alt="">
+            <span>{{total_revenue}}</span>
+          </h3>
+        </div>
+      </ion-col>
+      <ion-col size="3" class="ion-align-item-center ion-align-self-center" align="center">
+        <div>
+          <h3>{{total_match}}</h3>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+  <br>
+  <div align="center">
+    <!-- <h4>
+      <img src="assets/imgs/coins.webp" alt="">
+      <span>
+        650 = $ 1 USD
+      </span>
+    </h4> -->
+    <br><br>
+    <ion-button shape="round" class="contact_btn" (click)="contactus()">{{'contact_us' | translate}}</ion-button>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

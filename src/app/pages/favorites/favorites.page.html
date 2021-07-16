@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{'favorite_users' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="favorites.length == 0 && !api_done">
+    <ion-card *ngFor="let item of [1,2,3,4,5]">
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-thumbnail slot="start" align="center">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+
+        <div style="width: 100%;">
+          <h3>
+            <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 40%"></ion-skeleton-text>
+          </p>
+        </div>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div *ngIf="favorites.length == 0 && api_done" style="padding-top: 30%;" align="center">
+    {{'no_data_yet' | translate}}
+  </div>
+
+  <div>
+    <ion-card *ngFor="let item of favorites">
+      <ion-item lines="none" class="ion-no-padding">
+        <ion-thumbnail slot="start" align="center" (click)="showDetail(item)">
+          <img [src]="item.profile_img.includes('http') ? item.profile_img : preference.image_url + item.profile_img" alt="">
+          <ion-icon name="ellipse" color="success" *ngIf="item.online_status == 1"></ion-icon>
+        </ion-thumbnail>
+
+        <div (click)="showDetail(item)">
+          <h3>{{item.name}}</h3>
+          <p>
+            <img [src]="item.flag_url" alt="" class="flag">
+            <span>{{item.countries_name}}</span>
+          </p>
+        </div>
+
+        <ion-button slot="end" class="ion-no-margin" size="small" fill="clear" color="dark" *ngIf="item.isfavorite" (click)="favorite(item)">{{'remove' | translate}}</ion-button>
+        <ion-button slot="end" class="ion-no-margin" size="small" fill="clear" color="dark" *ngIf="!item.isfavorite" (click)="favorite(item)">{{'add' | translate}}</ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

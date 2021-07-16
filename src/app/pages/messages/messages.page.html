@@ -1,0 +1,115 @@
+<ion-header>
+  <ion-toolbar>
+    <!-- <ion-buttons slot="start" routerLink="/favorites" routerDirection="forward">
+      <ion-button fill="clear" size="small" style="margin-left: 40px;">
+        <ion-icon name="heart-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+
+    <ion-title>
+      <ion-icon name="chatbubbles" style="font-size: 30px;"></ion-icon>
+    </ion-title>
+
+    <!-- <ion-buttons slot="end">
+      <ion-button fill="clear" size="small" style="margin-right: 40px;">
+        <ion-icon name="search-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="refreshNews($event)">
+    <ion-refresher-content
+      pullingIcon="chevron-down-circle-outline"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="">
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="members.length == 0 && !api_done">
+    <ion-row>
+      <ion-col size="4">
+        <ion-skeleton-text animated style="height: 120px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="4">
+        <ion-skeleton-text animated style="height: 120px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="4">
+        <ion-skeleton-text animated style="height: 120px;"></ion-skeleton-text>
+      </ion-col>
+    </ion-row>
+  </div>
+  <ion-slides pager="false" [options]="sliderConfig" #userSlide (ionSlideDidChange)="changeSlide($event)">
+    <ion-slide *ngFor="let user of members" class="top_slide">
+      <ion-card class="ion-no-margin">
+        <img [src]="user.profile_img.includes('http') ? user.profile_img : preference.image_url + user.profile_img" alt="" (click)="showUser(user)">
+        <div class="follow" (click)="follow(user)">
+          <ion-icon [name]="user.isfavorite ? 'heart' : 'heart-outline'"></ion-icon>
+          <h5 class="ion-no-margin" *ngIf="user.isfavorite">{{'Unfollow' | translate}}</h5>
+          <h5 class="ion-no-margin" *ngIf="!user.isfavorite">{{'Follow' | translate}}</h5>
+        </div>
+        <ion-button fill="clear" size="small" class="ion-no-margin fav_btn">
+          <ion-icon name="shield-outline"></ion-icon>
+        </ion-button>
+        <p>{{user.name}} <span><ion-icon name="ellipse" [color]="user.online_status == 1 ? 'success' : 'light'"></ion-icon></span> </p>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
+
+  <br>
+
+  <div *ngIf="chatters.length == 0 && !apiDone">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding" *ngFor="let user of [1,2,3,4]">
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+
+        <div style="width: 100%;">
+          <h3>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 90%"></ion-skeleton-text>
+          </p>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div align="center" style="margin-top: 15%;" *ngIf="chatters.length == 0 && apiDone">
+    <ion-icon name="chatbox" class="chat_box"></ion-icon>
+    <br>
+    <h4 class="ion-no-margin">{{'start_conversation' | translate}}</h4>
+    <br>
+    <h4 class="ion-no-margin">{{'try_send_message' | translate}}</h4>
+  </div>
+  <div>
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding" *ngFor="let user of chatters" (click)="showMessage(user.user_data)">
+        <ion-avatar slot="start">
+          <img [src]="user.user_data.profile_img.includes('http') ? user.user_data.profile_img : preference.image_url + user.user_data.profile_img" alt="">
+          <ion-icon name="ellipse" color="success" *ngIf="user.user_data.online_status == 1"></ion-icon>
+        </ion-avatar>
+
+        <div>
+          <h3>{{user.user_data.name}}</h3>
+          <p style="font-size: 14px; color: #040486;">{{(user.last_msg.type == 'text' || user.last_msg.type == 'call') ? user.last_msg.msg : '... ...'}}
+            <ion-icon name="close" color="danger" *ngIf="user.last_msg.type == 'call' && user.last_msg.receiver == this.preference.currentUser.id && user.last_msg.msg == 'missed a call'"></ion-icon>
+          </p>
+          <p style="color: gray;" *ngIf="user.last_msg.receiver == this.preference.currentUser.id">{{'you_receive' | translate }} {{ moment(user.last_msg.sent_time * 1000).fromNow()}}</p>
+          <p style="color: gray;" *ngIf="user.last_msg.receiver != this.preference.currentUser.id">{{'you_sent' | translate}} {{ moment(user.last_msg.sent_time * 1000).fromNow()}}</p>
+        </div>
+
+        <ion-icon name="ellipse" color="danger" *ngIf="user.new_msg" slot="end" class="new_msg"></ion-icon>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>

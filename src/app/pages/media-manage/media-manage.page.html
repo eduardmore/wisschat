@@ -1,0 +1,123 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>      
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="!userData" style="height: auto; width: 100%;">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+
+      <div style="width: 100%;">
+        <h3><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></h3>
+        <h5>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h5>
+
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+        
+        <ion-row>
+          <ion-col align="left">
+            <p><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></p>
+          </ion-col>
+          <ion-col align="right">
+            <p><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item>    
+    <p>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+    </p>    
+    <ion-row>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+    </ion-row>
+  </div>
+  
+  <div *ngIf="userData">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-avatar slot="start">
+        <img [src]="userData?.profile_img.includes('http') ? userData?.profile_img : preference.image_url + userData?.profile_img" alt="">
+        <ion-button class="profile_img_add" (click)="choosePhotoType('profile')">
+          <ion-icon name="add-outline"></ion-icon>
+        </ion-button>
+        <input class="profile_img_input" type="file" *ngIf="!platform.is('hybrid')" name="images" #images (change)="changeImageListener($event, 'profile')" accept="image/*">
+      </ion-avatar>
+
+      <div style="width: 100%;">
+        <h3>{{userData.name}}</h3>
+        <h5>
+          <img [src]="userData.flag_url" alt="">
+          {{userData.countries_name}}          
+        </h5>
+
+        <div align="center" style="margin-top: 7px;">
+          <ion-button class="video_call" fill="outline" color="danger" shape="round" routerLink="/edit-profile" routerDirection="forward">
+            <ion-icon name="create-outline"></ion-icon>
+            {{'edit_profile' | translate}}
+          </ion-button>
+        </div>        
+      </div>
+    </ion-item>
+    <p>{{userData.about_me}}</p>
+    <div>
+      <h2>
+        <ion-icon name="videocam" color="danger"></ion-icon>
+        {{'Stories' | translate}}
+      </h2>
+      <ion-row>
+        <ion-col size="3" align="center" class="ion-align-item-center ion-align-self-center" style="position: relative;">
+          <ion-button class="story_btn" (click)="chooseVideo()">
+            <ion-icon name="add-outline"></ion-icon>
+          </ion-button>
+          <input class="video_input" type="file" *ngIf="!platform.is('hybrid')" name="images" #images (change)="changeListener($event)" accept="video/*">
+        </ion-col>
+        <ion-col size="3" align="center" class="ion-align-item-center ion-align-self-center" *ngFor="let story of stories; let i = index;">
+          <video src="{{preference.image_url}}{{story.url}}" playsinline preload="auto" width="75" height="75" class="video_file" (click)="showStories(story, i)">            
+          </video>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+      <h2>
+        <ion-icon name="images-outline" color="danger"></ion-icon>
+        {{'Photos' | translate}}
+      </h2>
+      <ion-row>
+        <ion-col size="6" align="center">
+          <div class="photo_div">
+            <ion-button class="story_btn photo_btn" (click)="choosePhotoType('photo')">
+              <ion-icon name="add-outline"></ion-icon>
+            </ion-button>
+            <input class="photo_img_input" type="file" *ngIf="!platform.is('hybrid')" name="images" #images (change)="changeImageListener($event, 'photo')" accept="image/*">
+          </div>
+        </ion-col>
+        <ion-col size="6" align="center" *ngFor="let photo of photos; let i = index;">
+          <div class="photo_div">
+            <img src="{{preference.image_url}}{{photo.url}}" alt="" (click)="showPhotos(i)">
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

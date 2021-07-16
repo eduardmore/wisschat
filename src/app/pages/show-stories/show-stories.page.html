@@ -1,0 +1,11 @@
+<ion-content>
+  <ion-button fill="clear" color="primary" class="back_btn" (click)="back()">
+    <ion-icon name="close-circle-outline"></ion-icon>
+  </ion-button>
+
+  <ion-button *ngIf="!isMe" fill="clear" color="primary" class="report_btn" (click)="report()">
+    <ion-icon name="shield-outline"></ion-icon>
+  </ion-button>
+  
+  <video class="video_div" src="{{preference.image_url}}{{story.url}}" playsinline autoplay></video>
+</ion-content>

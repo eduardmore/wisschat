@@ -1,0 +1,158 @@
+h3 {
+  font-size: 18px;
+  margin: 0;
+  font-weight: bold;
+}
+
+h5 {
+  font-size: 14px;
+  margin: 0;
+
+  img {
+    width: 23px;
+    height: 15px;
+    position: relative;
+    top: 2px;
+  }
+
+  ion-icon {
+    font-size: 20px;
+    top: 5px;
+    position: relative;
+  }
+}
+
+p {
+  font-size: 14px;
+  margin: 0;
+  font-style: italic;
+}
+
+ion-item {
+  margin-bottom: 10px;
+
+  ion-avatar {
+    width: 110px;
+    height: 110px;
+    margin-right: 11px;
+    position: relative;
+
+    ion-button {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 27px;
+      height: 27px;
+      --border-radius: 50%;
+      border-radius: 50%;
+      --background: white;
+      box-shadow: rgb(0 0 0 / 20%) 0px 1px 6px;
+      --padding-start: 0;
+      --padding-end: 0;
+
+      ion-icon {
+        position: absolute;
+        color: red;
+        margin-right: 0;
+        font-size: 22px;
+      }
+    }
+
+    .profile_img_input {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 31px;
+      height: 31px;
+      z-index: 1;
+      opacity: 0;
+    }
+  }
+}
+
+ion-button ion-icon {
+  margin-right: 5px;
+}
+
+.video_call {
+  width: 99%;
+}
+
+h2 {
+  margin: 8px 0 6px;
+  font-size: 17px;
+  font-weight: bold;
+
+  ion-icon {
+    position: relative;
+    top: 4px;
+    font-size: 21px;
+  }
+}
+
+.story_btn {
+  width: 55px;
+  height: 55px;
+  --border-radius: 50%;
+  --padding-start: 0;
+  --padding-end: 0;
+  --background: #e6e4e4;
+
+  ion-icon {
+    position: absolute;
+    margin-right: 0px;
+    font-size: 40px;
+  }
+}
+
+.photo_div {
+  width: 100%;
+  height: 160px;
+  background: #f3f3f3;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: -50%;
+    right: -50%;
+    width: 100%;
+    min-height: 100%;
+    margin: auto;
+    bottom: 0;
+  }
+}
+
+.photo_btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.photo_img_input {
+  width: 59px;
+  height: 48px;
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+
+.video_input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 55px;
+  width: 55px;
+  opacity: 0;
+}
+
+.video_file {
+  border-radius: 50%;
+  border: 2px solid var(--primary);
+}

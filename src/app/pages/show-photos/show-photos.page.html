@@ -1,0 +1,17 @@
+<ion-content>
+  <ion-button fill="clear" color="primary" class="back_btn" (click)="back()">
+    <ion-icon name="close-circle-outline"></ion-icon>
+  </ion-button>
+
+  <ion-button *ngIf="!isMe" fill="clear" color="primary" class="report_btn" (click)="report()">
+    <ion-icon name="shield-outline"></ion-icon>
+  </ion-button>
+
+  <div style="height: 100%;">
+    <ion-slides pager="true" #imgSlide [options]="sliderConfig">
+      <ion-slide *ngFor="let photo of photos">
+        <img src="{{preference.image_url}}{{photo.url}}" alt="" [hidden]="!shown">
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>

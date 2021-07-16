@@ -1,0 +1,208 @@
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+:root {
+  --gray: #dad6d6;
+  --primary: #da5252;
+  --secondary: #6d0365;
+  --tertiary: #026e9e;
+  --success: #067655;
+  --warning: #ffcc00;
+  --danger: #d60484;
+  --medium: #9294aa;
+  --theme-gradient: linear-gradient(0deg, #fe278c 10%, #f7127d 32%, #f9045f 68%, #e1002a 100%);
+  --noti-gradient: linear-gradient(90deg, #ffffff 2%, #fae8d8 40%, #fae8d8 60%, #ffffff 100%);
+}
+
+ion-button {
+  letter-spacing: 0.5px;
+}
+
+ion-list {
+  background: transparent !important;
+}
+
+ion-item {
+  --inner-padding-end: 0px;
+  --background: transparent;
+}
+
+ion-back-button {
+  font-size: 13px;
+  margin-left: 10px;
+}
+
+.coin_img {
+  width: 20px;
+  margin-right: 7px;
+}
+
+.suggestion .modal-wrapper {
+  height: 290px;
+  width: 80%;
+  border-radius: 16px;
+}
+
+.gift_modal .modal-wrapper {
+  height: 340px;
+  width: 100%;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  position: absolute;
+  bottom: 0;
+}
+
+.show-viewfinder, .show-native-player {
+  --background: transparent !important;
+  --background-color: transparent !important;
+  background-color: transparent !important;
+
+  ion-app,
+  ion-content,
+  .nav-decor {
+    --background: transparent !important;
+    --background-color: transparent !important;
+    background-color: transparent !important;
+  }
+}
+
+.textarea-wrapper.sc-ion-textarea-ios, .textarea-wrapper.sc-ion-textarea-md,
+.native-textarea.sc-ion-textarea-ios, .native-textarea.sc-ion-textarea-md {
+  height: 100%;
+}
+
+.infinite-scroll-content-ios .infinite-loading-text, .infinite-scroll-content-md .infinite-loading-text {
+  color: white;
+}
+
+.spinner-bubbles {
+  color: white;
+}
+
+.lang_ar {
+  ion-avatar {
+    margin-left: 11px;
+  }
+
+  .anl_item ion-avatar {
+    margin-right: 0px !important;
+  }
+
+  ion-button {
+    ion-icon {
+      margin-right: 0px !important;
+      margin-left: 5px;
+    }
+  }
+
+  .video_call {
+    ion-icon {
+      margin-right: 0;
+      margin-left: 5px;
+    }
+  }
+
+  .block_div {
+    h5 {
+      float: right !important;
+    }
+    p {
+      float: left !important;
+    }
+  }
+  
+  .coin_img {
+    margin-right: 0px;
+    margin-left: 7px;
+  }
+
+  ion-card {
+    ion-item {
+      ion-thumbnail {
+        margin-left: 13px;
+      }
+      .flag {
+        margin-right: 0px !important;
+        margin-left: 5px;
+      }
+    }
+  }
+
+  .coun_name {
+    display: flex;
+    margin-top: 3px;
+
+    img {
+      margin-left: 5px;
+    }
+
+    span {
+      position: relative;
+      top: -7px;
+    }
+  }
+
+  .prof_title {
+    margin-left: 10px;
+
+    ion-avatar {
+      margin-left: 10px;
+    }
+  }
+
+  .post-div {
+    .receive-msg {
+      float: right !important;
+    }
+    .send-msg {
+      float: left !important;
+    }
+  }
+
+  .action_div {
+    right: auto !important;
+    left: 9px !important;
+
+    ion-button {
+      ion-icon {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+      }
+    }
+  }
+
+  .profile_div .search_div ion-item ion-avatar {
+    margin: 0 0 0 10px !important;
+  }
+
+  .top-video {
+    left: auto !important;
+    right: 16px !important;
+  }
+
+  .stream_div ion-item {
+    left: auto !important;
+    right: 20px !important;
+
+    ion-avatar {
+      margin: 0 0 0 10px !important;
+    }
+  }
+
+  .body_row img, .footer_row img {
+    margin-right: 0px !important;
+    margin-left: 5px;
+  }
+}

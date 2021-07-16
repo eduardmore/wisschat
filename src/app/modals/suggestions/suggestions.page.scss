@@ -1,0 +1,42 @@
+ion-header {
+  ion-title {
+    padding: 0 10px;
+    color: white;
+  }
+}
+
+ion-header,
+ion-toolbar {
+  --background: linear-gradient(0deg, #ca3d05 2%, #b53804 30%, #9c3203 50%, #6d1b03 100%);
+}
+
+ion-item {
+  margin-bottom: 5px;
+}
+
+h4 {
+  font-size: 15px;
+  margin: 0;
+  font-weight: bold;
+}
+
+p {
+  margin: 2px 0 0;
+  font-size: 14px;
+
+  ion-icon {
+    position: relative;
+    top: 1px;
+  }
+}
+
+ion-checkbox {
+  margin: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.foot_div {
+  border-top: 1px solid #d8d3d3;
+  padding: 5px 10px;
+}

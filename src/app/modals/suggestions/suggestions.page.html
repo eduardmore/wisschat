@@ -1,0 +1,52 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button fill="clear" size="small" color="light" (click)="dismiss()">
+        <ion-icon name="transgender-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Preference De Genre</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-padding">
+    <ion-list>
+      <ion-item lines="none" class="ion-no-padding">
+        <div>
+          <h4>Femme</h4>
+          <p><span><ion-icon name="server" color="warning"></ion-icon></span> 9</p>
+        </div>
+        <ion-checkbox slot="end" color="danger"></ion-checkbox>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding">
+        <div>
+          <h4>Homme</h4>
+          <p><span><ion-icon name="server" color="warning"></ion-icon></span> 9</p>
+        </div>
+        <ion-checkbox slot="end" color="danger"></ion-checkbox>
+      </ion-item>
+
+      <ion-item lines="none" class="ion-no-padding">
+        <div>
+          <h4>Tous les deux</h4>
+          <p><span><ion-icon name="server" color="warning"></ion-icon></span> Gratuit</p>
+        </div>
+        <ion-checkbox slot="end" color="danger"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="foot_div">
+    <ion-row>
+      <ion-col size="7" class="ion-align-item-center ion-align-self-center">
+        <h4>Mes Pieces:</h4>
+        <p><span><ion-icon name="server" color="warning"></ion-icon></span> {{preference.currentUser.coins}}</p>
+      </ion-col>
+      <ion-col size="5" class="ion-align-item-center ion-align-self-center" align="right">
+        <ion-button size="small" color="danger" (click)="continue()">Continue</ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

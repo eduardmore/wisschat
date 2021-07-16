@@ -1,0 +1,103 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{'settings' | translate}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-start ion-padding-end ion-padding-bottom">
+  <div class="edit_sec">
+    <h3><strong>{{'id' | translate}}</strong></h3>
+    <ion-list>
+      <ion-item lines="none">
+        <ion-icon name="copy-outline" color="primary" slot="start"></ion-icon>
+        <ion-label>{{preference.currentUser.id}}</ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="edit_sec">
+    <h3><strong>{{'gender_preference' | translate}}</strong></h3>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="gender" (ionChange)="changeGender($event)">
+        <ion-item lines="none">
+          <ion-label>{{'Male' | translate}} (5 {{'coins' | translate}})</ion-label>
+          <ion-radio slot="end" value="Male"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>{{'Female' | translate}} (9 {{'coins' | translate}})</ion-label>
+          <ion-radio slot="end" value="Female"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>{{'Both' | translate}} ({{'Free' | translate}})</ion-label>
+          <ion-radio slot="end" value="Both"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div class="edit_sec">
+    <h3><strong>{{'language' | translate}}</strong></h3>
+    <ion-list>
+      <ion-radio-group [(ngModel)]="lang" (ionChange)="changeLang($event)">
+        <ion-item lines="none">
+          <ion-label>{{'english' | translate}}</ion-label>
+          <ion-radio slot="end" value="en"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>{{'arabic' | translate}}</ion-label>
+          <ion-radio slot="end" value="ar"></ion-radio>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label>{{'french' | translate}}</ion-label>
+          <ion-radio slot="end" value="fr"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+    </ion-list>
+  </div>
+
+  <div class="edit_sec">
+    <h3><strong>{{'contact_us' | translate}}</strong></h3>
+    <ion-list>
+      <ion-item lines="none" (click)="support()">
+        <ion-label>{{'help_support' | translate}}</ion-label>
+        <ion-note slot="end">
+          <ion-icon [name]="preference.defaultLang == 'ar' ? 'chevron-back-outline' : 'chevron-forward-outline'"></ion-icon>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="edit_sec">
+    <h3><strong>{{'Legal' | translate}}</strong></h3>
+    <ion-list>
+      <ion-item lines="none" (click)="showContent('policy')">
+        <ion-label>{{'privacy_policy' | translate}}</ion-label>
+        <ion-note slot="end">
+          <ion-icon [name]="preference.defaultLang == 'ar' ? 'chevron-back-outline' : 'chevron-forward-outline'"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item lines="none" (click)="showContent('terms')">
+        <ion-label>{{'terms_use' | translate}}</ion-label>
+        <ion-note slot="end">
+          <ion-icon [name]="preference.defaultLang == 'ar' ? 'chevron-back-outline' : 'chevron-forward-outline'"></ion-icon>
+        </ion-note>
+      </ion-item>
+
+      <ion-item lines="none" (click)="showContent('guidline')">
+        <ion-label>{{'community_guidlines' | translate}}</ion-label>
+        <ion-note slot="end">
+          <ion-icon [name]="preference.defaultLang == 'ar' ? 'chevron-back-outline' : 'chevron-forward-outline'"></ion-icon>
+        </ion-note>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

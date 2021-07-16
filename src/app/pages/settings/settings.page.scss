@@ -1,0 +1,39 @@
+ion-content {
+  --background: linear-gradient(0deg, #501802 10%, #381101 32%, #2f0f01 50%, #000000 100%);
+}
+
+h2 {
+  color: white;
+}
+
+ion-list {
+  width: 100%;
+}
+
+ion-slide {  
+  display: block;
+}
+
+ion-label, ion-select, ion-input {
+  color: white !important;
+}
+
+ion-item {
+  ion-label {
+    font-size: 15px;
+  }
+}
+
+ion-radio-group { 
+
+  ion-list-header {
+    font-size: 19px;
+  }
+
+  ion-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid white;
+    border-radius: 15px;
+  }
+}

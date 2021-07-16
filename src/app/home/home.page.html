@@ -1,0 +1,67 @@
+<ion-content [fullscreen]="true" class="ion-padding">
+  <br>
+  <ion-row>
+    <ion-col size="6" align="center">
+      <ion-button shape="round" size="small" class="top_btn" color="tertiary" (click)="selectGender($event)">
+        <ion-icon name="female" slot="start"></ion-icon>
+        {{gender | translate}}
+      </ion-button>
+    </ion-col>
+    <ion-col size="6" align="center">
+      <ion-button shape="round" size="small" class="top_btn" color="tertiary" (click)="showSuggestion()">
+        <img src="assets/imgs/coins.webp" alt="" class="coin_img">
+        {{preference.currentUser.user_type == 'employee' ? 0 : preference.currentUser.coins}}
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+  <div align="center" class="call_center">
+    <ion-icon name="call" color="light" class="main_call" (click)="call()"></ion-icon>
+    <!-- <h3>Call</h3> -->
+  </div>
+  <br>
+  <!-- <ion-list *ngIf="users.length == 0 && !api_done" style="height: auto; width: 100%;">
+    <ion-item *ngFor="let demo of [1,2,3,4,5]" lines="none">
+      <ion-thumbnail slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-thumbnail>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
+    <ion-item lines="none" class="ion-no-padding" *ngFor="let user of users" (click)="showDetail(user)">
+      <ion-avatar slot="start">
+        <img [src]="user.profile_img.includes('http') ? user.profile_img : preference.image_url + user.profile_img" alt="">
+        <ion-icon name="ellipse" color="success" *ngIf="user.online_status == 1"></ion-icon>
+      </ion-avatar>
+
+      <div>
+        <h3>{{user.name}}</h3>
+        <h5>
+          <img [src]="user.flag_url" alt="">
+          {{user.countries_name}}
+        </h5>
+        <p>{{user.gender}} &nbsp;-&nbsp; {{user.age}}</p>
+      </div>
+    </ion-item>
+  </ion-list>
+
+  <ion-infinite-scroll style="margin-top: 16px;" threshold="50px" (ionInfinite)="loadMoreData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll> -->
+
+</ion-content>
+
+<app-footer></app-footer>

@@ -1,0 +1,60 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>      
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>{{'edit_profile' | translate}}</ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button size="small" fill="clear" color="primary" (click)="update()">
+        <ion-icon name="checkmark-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="userData">
+    <div align="center" style="position: relative;">
+      <div class="prof_div">
+        <img [src]="userData.profile_img.includes('http') ? userData.profile_img : preference.image_url + userData.profile_img" alt="">
+      </div>
+
+      <ion-button class="profile_img_add" (click)="choosePhotoType('profile')">
+        <ion-icon name="pencil-outline"></ion-icon>
+      </ion-button>
+      <input class="profile_img_input" type="file" *ngIf="!platform.is('hybrid')" name="images" #images (change)="changeImageListener($event, 'profile')" accept="image/*">
+    </div>
+    
+    <div class="edit_sec">
+      <h3><strong>{{'name' | translate}}</strong></h3>
+      <ion-input type="text" placeholder="Name" [(ngModel)]="name" autocapitalize="words"></ion-input>
+    </div>
+
+    <div class="edit_sec">
+      <h3><strong>{{'about_me' | translate}}</strong></h3>
+      <ion-textarea type="text" class="about_me" placeholder="Tell about you" [(ngModel)]="about_me" autocapitalize="sentences"></ion-textarea>
+    </div>
+
+    <div class="edit_sec">
+      <h3><strong>{{'birthday' | translate}}</strong></h3>
+      <ion-input type="date" placeholder="Your birthday" [(ngModel)]="birthday"></ion-input>
+    </div>
+
+    <div class="edit_sec">
+      <h3><strong>{{'phone' | translate}}</strong></h3>
+      <ion-input type="tel" placeholder="Phone Number" [(ngModel)]="phone"></ion-input>
+    </div>
+
+    <div class="edit_sec">
+      <h3><strong>{{'address' | translate}}</strong></h3>
+      <ion-input type="text" placeholder="Address" [(ngModel)]="address" autocapitalize="words"></ion-input>
+    </div>
+
+    <div class="edit_sec">
+      <h3><strong>{{'city' | translate}}</strong></h3>
+      <ion-input type="text" placeholder="City" [(ngModel)]="city" autocapitalize="words"></ion-input>
+    </div>
+  </div>
+</ion-content>

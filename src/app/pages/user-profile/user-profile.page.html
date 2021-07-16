@@ -1,0 +1,137 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>      
+      <ion-back-button color="primary" [icon]="preference.defaultLang == 'ar' ? 'chevron-forward-outline' : 'chevron-back-outline'" text=""></ion-back-button>
+    </ion-buttons>
+
+    <ion-title></ion-title>
+
+    <ion-buttons slot="end">
+      <ion-button fill="clear" size="small" color="primary">
+        <ion-icon name="shield-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="!userData" style="height: auto; width: 100%;">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-avatar slot="start">
+        <ion-skeleton-text animated></ion-skeleton-text>
+      </ion-avatar>
+
+      <div style="width: 100%;">
+        <h3><ion-skeleton-text animated style="width: 30%"></ion-skeleton-text></h3>
+        <h5>
+          <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+        </h5>
+
+        <p>
+          <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+        </p>
+        
+        <ion-row>
+          <ion-col align="left">
+            <p><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></p>
+          </ion-col>
+          <ion-col align="right">
+            <p><ion-skeleton-text animated style="width: 90%"></ion-skeleton-text></p>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item>    
+    <p>
+      <ion-skeleton-text animated style="width: 70%"></ion-skeleton-text>
+    </p>    
+    <ion-row>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+      <ion-col size="6">
+        <ion-skeleton-text animated style="height: 150px;"></ion-skeleton-text>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="userData">
+    <ion-item class="ion-no-padding" lines="none">
+      <ion-avatar slot="start">
+        <img [src]="userData?.profile_img.includes('http') ? userData?.profile_img : preference.image_url + userData?.profile_img" alt="">
+        <ion-icon name="ellipse" color="success" *ngIf="userData.online_status == 1"></ion-icon>
+      </ion-avatar>
+
+      <div style="width: 100%;">
+        <h3>{{userData.name}}</h3>
+        <h5 class="coun_name">
+          <img [src]="userData.flag_url" alt="">
+          {{userData.countries_name}}
+          &nbsp;&nbsp;
+          <span>
+            <ion-icon name="heart" color="danger"></ion-icon>
+            {{receiveFavorites}}
+          </span>
+        </h5>
+
+        <div align="center" style="margin-top: 7px;">
+          <ion-button class="video_call" shape="round" (click)="call()">
+            <ion-icon name="videocam" color="light"></ion-icon>
+            {{'video_chat' | translate}}
+          </ion-button>
+        </div>
+        
+        <ion-row>
+          <ion-col [style.text-align]="preference.defaultLang == 'ar' ? 'right' : 'left'">
+            <ion-button color="tertiary" shape="round" size="small" (click)="showMessage()">
+              <ion-icon name="chatbubbles"></ion-icon>
+              {{'message' | translate}}
+            </ion-button>
+          </ion-col>
+          <ion-col [style.text-align]="preference.defaultLang == 'ar' ? 'left' : 'right'">
+            <ion-button *ngIf="!isfavorite" fill="outline" color="danger" shape="round" size="small" (click)="favorite()">
+              <ion-icon name="heart-outline"></ion-icon>
+              {{'favorite' | translate}}
+            </ion-button>
+            <ion-button *ngIf="isfavorite" color="danger" shape="round" size="small" (click)="favorite()">
+              <ion-icon name="heart"></ion-icon>
+              {{'unfavorite' | translate}}
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </div>
+    </ion-item>
+    <p>{{userData.about_me}}</p>
+    <div>
+      <h2>
+        <ion-icon name="videocam" color="danger"></ion-icon>
+        {{'Stories' | translate}}
+      </h2>
+      <ion-row>        
+        <ion-col size="3" align="center" class="ion-align-item-center ion-align-self-center" *ngFor="let story of stories; let i = index;">
+          <video src="{{preference.image_url}}{{story.url}}" playsinline width="75" height="75" class="video_file" (click)="showStories(story, i)">
+            <source src="{{preference.image_url}}{{story.url}}" type="">
+          </video>
+        </ion-col>
+      </ion-row>
+    </div>
+    <div>
+      <h2>
+        <ion-icon name="images-outline" color="danger"></ion-icon>
+        {{'Photos' | translate}}
+      </h2>
+      <ion-row>        
+        <ion-col size="6" align="center" *ngFor="let photo of photos; let i = index;">
+          <div class="photo_div">
+            <img src="{{preference.image_url}}{{photo.url}}" alt="" (click)="showPhotos(i)">
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>

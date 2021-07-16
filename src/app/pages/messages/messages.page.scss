@@ -1,0 +1,152 @@
+ion-header {
+  ion-button {
+    --color: #6d3403fa;
+  }
+}
+
+ion-title ion-icon {
+  color: #6d3403fa;
+}
+
+ion-slide {
+  padding: 8px 0 16px 0;
+}
+
+ion-card {
+  height: 160px;
+  width: 95%;
+  position: relative;
+
+  img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+  }
+
+  .follow {
+    position: fixed;
+    background: var(--secondary);
+    padding: 2px;
+    top: 4px;
+    left: 3px;
+    color: white;
+    font-size: 11px;
+    display: flex;
+    border-radius: 3px;
+
+    ion-icon {
+      font-size: 14px;
+      position: relative;
+      margin-right: 2px;
+    }
+
+    h5 {
+      font-size: 11px;
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  .fav_btn {
+    position: fixed;
+    --padding-start: 4px;
+    --padding-end: 4px;
+    --padding-top: 1px;
+    --padding-bottom: 1px;
+    right: 3px;
+    --color: white;
+    --background: #1f1b1b4f;
+    height: 21px;
+    --border-radius: 3px;
+    top: 2px;
+  }
+
+  p {
+    position: fixed;
+    color: white;
+    margin: 0;
+    bottom: 5px;
+    left: 6px;
+    font-weight: bold;
+    background: #23212169;
+    padding: 1px 3px;
+    border-radius: 4px;
+
+    ion-icon {
+      position: relative;
+      top: 3px;
+    }
+  }
+}
+
+.chat_box {
+  font-size: 105px;
+  color: var(--secondary);
+}
+
+h4 {
+  font-size: 18px;
+  color: var(--secondary);
+}
+
+ion-item {
+  border-radius: 50px;
+  padding: 7px 10px;
+  border-bottom: 1px solid gray;
+  margin-bottom: 10px;
+
+  ion-avatar {
+    width: 60px;
+    height: 60px;
+    margin-right: 11px;
+    position: relative;
+
+    ion-icon {
+      position: absolute;
+      right: 0;
+    }
+  }
+
+  h3 {
+    color: var(--primary);
+    font-size: 18px;
+    margin: 0;
+  }
+
+  h5 {
+    font-size: 14px;
+    margin: 0 0 5px;
+
+    img {
+      width: 23px;
+      height: 15px;
+      position: relative;
+      top: 2px;
+    }
+  }
+
+  p {
+    font-size: 12px;
+    margin: 0;
+
+    ion-icon {
+      position: relative;
+      top: 3px;
+      margin-left: 10px;
+      font-size: 17px;
+    }
+  }
+
+  .new_msg {
+    margin: 0 7px 0;
+    position: relative;
+    top: 7px;
+    font-size: 18px;
+  }
+}
+
+ion-refresher {
+  background: white;
+}

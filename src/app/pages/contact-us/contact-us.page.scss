@@ -1,0 +1,26 @@
+.edit_sec {
+  h3 {
+    font-size: 16px;
+    color: var(--primary);
+    text-transform: uppercase;
+  }
+
+  ion-input, ion-textarea {
+    background: #f9f6f6;
+    --padding-start: 8px;
+    border-radius: 5px;
+  }
+
+  .about_me {
+    height: 110px;
+  }
+}
+
+ion-title ion-icon, ion-col span {
+  color: var(--danger);
+}
+
+ion-button {
+  min-width: 35%;
+  height: 35px;
+}

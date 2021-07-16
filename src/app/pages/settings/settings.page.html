@@ -1,0 +1,63 @@
+<ion-content class="ion-padding">
+  <h2 align="center"><strong>{{'setup_account' | translate}}</strong></h2>
+  <div>
+    <ion-slides pager="false" [options]="sliderConfig" #settingSlides>
+      <ion-slide>
+        <ion-list class="ion-padding">
+          <ion-radio-group [(ngModel)]="gender" (ionChange)="changeGender($event)">
+            <ion-list-header>
+              <ion-label>{{'select_gender' | translate}}</ion-label>
+            </ion-list-header>
+            <br>
+            <ion-item lines="none">
+              <ion-label>{{'Male' | translate}}</ion-label>
+              <ion-radio slot="start" value="Male"></ion-radio>
+            </ion-item>
+            <br>
+            <ion-item lines="none">
+              <ion-label>{{'Female' | translate}}</ion-label>
+              <ion-radio slot="start" value="Female"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+        <br><br>
+        <ion-button color="light" shape="round" style="width: 50%;" (click)="next()">{{'Next' | translate}}</ion-button>
+      </ion-slide>
+
+      <ion-slide>
+        <ion-list class="ion-padding" *ngIf="countries.length > 0">
+          <ion-item class="ion-no-padding" lines="line">
+            <ion-label position="floating">{{'Country' | translate}} <span>*</span></ion-label>
+            <ion-select placeholder="Select country" [(ngModel)]="country_id" (ionChange)="selectCountry($event)">
+              <ion-select-option *ngFor="let item of countries" [value]="item.countries_id">
+                {{item.countries_name}}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+          
+          <ion-item class="ion-no-padding" lines="line">
+            <ion-label position="floating">{{'phone_number' | translate}} <span>*</span></ion-label>
+            <ion-input type="tel" [(ngModel)]="phone"></ion-input>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" lines="line">
+            <ion-label position="floating">{{'birthday' | translate}} <span>*</span></ion-label>
+            <ion-input type="date" [(ngModel)]="birthday"></ion-input>
+          </ion-item>
+          
+          <ion-item class="ion-no-padding" lines="line">
+            <ion-label position="floating">{{'address' | translate}}</ion-label>
+            <ion-input type="text" [(ngModel)]="address" autocapitalize="words"></ion-input>
+          </ion-item>
+
+          <ion-item class="ion-no-padding" lines="line">
+            <ion-label position="floating">{{'city' | translate}}</ion-label>
+            <ion-input type="text" [(ngModel)]="city" autocapitalize="words"></ion-input>
+          </ion-item>
+        </ion-list>
+        <br><br>
+        <ion-button color="light" shape="round" style="width: 50%;" (click)="update()">{{'Update' | translate}}</ion-button>
+      </ion-slide>
+    </ion-slides>
+  </div>
+</ion-content>

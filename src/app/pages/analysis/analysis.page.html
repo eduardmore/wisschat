@@ -1,0 +1,132 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      <ion-icon name="bar-chart" style="font-size: 30px;"></ion-icon>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-segment [(ngModel)]="duration" (ionChange)="segmentChanged($event)">
+    <ion-segment-button value="24h" class="gallery">
+      {{'last_24_h' | translate}}
+    </ion-segment-button>
+    <ion-segment-button value="week">
+      {{'this_week' | translate}}
+    </ion-segment-button>
+  </ion-segment>
+
+  <div [ngSwitch]="duration">
+    <div *ngSwitchCase="'24h'" class="part_div">
+      <div *ngIf="!api_done">
+        <ion-row *ngFor="let user of [1,2,3,4,5,6]">
+          <ion-col size="1" class="ion-align-item-center ion-align-self-center">            
+          </ion-col>
+          <ion-col size="11" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding anl_item" lines="none">
+              <ion-avatar slot="start">
+                <ion-skeleton-text animated style="height: 65px;"></ion-skeleton-text>
+              </ion-avatar>
+              <div style="width: 100%;">
+                <h3>
+                  <ion-skeleton-text animated style="width: 70%;"></ion-skeleton-text>
+                </h3>
+                <h5>
+                  <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+                </h5>
+              </div>
+              <ion-note slot="end">
+                <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+              </ion-note>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="api_done && users.length == 0" style="padding-top: 30%;" align="center">
+        {{'no_data_yet' | translate}}
+      </div>
+
+      <ion-row *ngFor="let user of users; let i = index;">
+        <ion-col size="1" class="ion-align-item-center ion-align-self-center">
+          <span>{{i + 1}}.</span>
+        </ion-col>
+        <ion-col size="11" class="ion-align-item-center ion-align-self-center">
+          <ion-item class="ion-no-padding anl_item" lines="none">
+            <ion-avatar slot="start">
+              <img [src]="user.user_info?.profile_img.includes('http') ? user.user_info?.profile_img : preference.image_url + user.user_info?.profile_img" alt="">
+            </ion-avatar>
+            <div>
+              <h3>{{user.user_info?.name}}</h3>
+              <h5>
+                <img [src]="user.user_info?.flag_url" alt="">
+                {{user.user_info?.countries_name}}
+              </h5>
+            </div>
+            <ion-note slot="end">
+              <img [src]="'assets/imgs/coins.webp'" alt="">
+              {{user.coins}}
+            </ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngSwitchCase="'week'" class="part_div">
+      <div *ngIf="!api_done">
+        <ion-row *ngFor="let user of [1,2,3,4,5,6]">
+          <ion-col size="1" class="ion-align-item-center ion-align-self-center">            
+          </ion-col>
+          <ion-col size="11" class="ion-align-item-center ion-align-self-center">
+            <ion-item class="ion-no-padding anl_item" lines="none">
+              <ion-avatar slot="start">
+                <ion-skeleton-text animated style="height: 65px;"></ion-skeleton-text>
+              </ion-avatar>
+              <div style="width: 100%;">
+                <h3>
+                  <ion-skeleton-text animated style="width: 70%;"></ion-skeleton-text>
+                </h3>
+                <h5>
+                  <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+                </h5>
+              </div>
+              <ion-note slot="end">
+                <ion-skeleton-text animated style="width: 50%;"></ion-skeleton-text>
+              </ion-note>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </div>
+
+      <div *ngIf="api_done && users.length == 0" style="padding-top: 30%;" align="center">
+        {{'no_data_yet' | translate}}
+      </div>
+      
+      <ion-row *ngFor="let user of users; let i = index;">
+        <ion-col size="1" class="ion-align-item-center ion-align-self-center">
+          <span>{{i + 1}}.</span>
+        </ion-col>
+        <ion-col size="11" class="ion-align-item-center ion-align-self-center">
+          <ion-item class="ion-no-padding anl_item" lines="none">
+            <ion-avatar slot="start">
+              <img [src]="user.user_info?.profile_img.includes('http') ? user.user_info?.profile_img : preference.image_url + user.user_info?.profile_img" alt="">
+            </ion-avatar>
+            <div>
+              <h3>{{user.user_info?.name}}</h3>
+              <h5>
+                <img [src]="user.user_info?.flag_url" alt="">
+                {{user.user_info?.countries_name}}
+              </h5>
+            </div>
+            <ion-note slot="end">
+              <img [src]="'assets/imgs/coins.webp'" alt="">
+              {{user.coins}}
+            </ion-note>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+</ion-content>
+
+<app-footer></app-footer>
